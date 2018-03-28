@@ -1,12 +1,68 @@
 {
-  planets: [
+  "planets": [
     {
-      "name":,
-      "imageUrl":,
-      "description":,
-      "isGasPlanet":,
-      "numberOfMoons":,
-      "nameOfLargestMoon":
+      "name": "Earth",
+      "imageUrl":"/pictures/earth.jpg",
+      "description":"Earth is the third planet from the Sun and the fifth largest in the solar system. Just slightly larger than nearby Venus, Earth is the biggest of the terrestrial planets. Our home planet is the only planet in our solar system known to harbor living things. The name Earth is at least 1,000 years old. All of the planets, except for Earth, were named after Greek and Roman gods and goddesses. However, the name Earth is an English/German word, which simply means the ground.",
+      "isGasPlanet":false,
+      "numberOfMoons":"1",
+      "nameOfLargestMoon": "The Moon"
     },
+    {
+      "name": "Venus",
+      "imageUrl":"/pictures/venus.jpg",
+      "description":"Venus is the second planet from the Sun and our closest planetary neighbor. Similar in structure and size to Earth, Venus spins slowly in the opposite direction most planets do. Its thick atmosphere traps heat in a runaway greenhouse effect, making it the hottest planet in our solar system with surface temperatures hot enough to melt lead. Glimpses below the clouds reveal volcanoes and deformed mountains. Venus is named for the ancient Roman goddess of love and beauty, the counterpart to the Greek goddess Aphrodite.",
+      "isGasPlanet":false,
+      "numberOfMoons":"0",
+      "nameOfLargestMoon": "0"
+    },
+    {
+      "name": "Jupiter",
+      "imageUrl":"/pictures/jupiter.jpg",
+      "description":"Jupiter is the fifth planet from our Sun and the largest planet in the solar system. Jupiter's stripes and swirls are cold, windy clouds of ammonia and water. The atmosphere is mostly hydrogen and helium, and its iconic Great Red Spot is a giant storm bigger than Earth that has raged for hundreds of years.Jupiter is surrounded by more than 50 moons. Scientists are most interested in the 'Galilean satellites' — the four largest moons discovered by Galileo Galilei in 1610: Europa, Callisto, Ganymede and Io. Jupiter also has three rings, but they are very hard to see and not nearly as intricate as Saturn's. Jupiter is named for the king of ancient Roman gods.​",
+      "isGasPlanet":true,
+      "numberOfMoons":"69",
+      "nameOfLargestMoon": "Ganymede"
+    },
+    {
+      "name": "Mercury",
+      "imageUrl":"/pictures/mercury.jpg",
+      "description":"The smallest planet in our solar system and nearest to the Sun, Mercury is only slightly larger than Earth's moon. From the surface of Mercury, the Sun would appear more than three times as large as it does when viewed from Earth, and the sunlight would be as much as 11 times brighter. Despite its proximity to the Sun, Mercury is not the hottest planet in our solar system—that title belongs to nearby Venus—but it is the fastest, zipping around the Sun every 88 Earth days. Mercury is appropriately named for the swiftest of the ancient Roman gods. Mercury, the god of commerce, is the Roman counterpart to the ancient Greek god Hermes, the messenger of the gods.​",
+      "isGasPlanet":false,
+      "numberOfMoons":"0",
+      "nameOfLargestMoon": ""
+    },
+    {
+      "name": "Mars",
+      "imageUrl":"/pictures/mars.jpg",
+      "description":"The fourth planet from the Sun, Mars is a cold desert world with evidence of ancient floods. This dynamic planet has seasons, polar ice caps, volcanoes, canyons and weather. Mars is one of the most explored bodies in our solar system, and it's the only planet we've sent rovers to roam the alien landscape. Mars can be one of the brightest objects in the night sky, and has been known since ancient times. Mars was named by the Romans for their god of war because its reddish color was reminiscent of blood. Other civilizations also named this planet for this attribute; for example, the Egyptians named it 'Her Desher,' meaning 'the red one.' Even today it is sometimes called the 'Red Planet' because iron minerals in the Martian dirt oxidize, or rust, causing the surface—and the dusty atmosphere—to look red.​",
+      "isGasPlanet":false,
+      "numberOfMoons":"2",
+      "nameOfLargestMoon": "Deimos"
+    },
+    {
+      "name": "Uranus",
+      "imageUrl":"/pictures/uranus.jpg",
+      "description":"The seventh planet from the Sun with the third largest diameter in our solar system, Uranus is very cold and windy. The ice giant is surrounded by 13 faint rings and 27 small moons as it rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side, orbiting the Sun like a rolling ball. The first planet found with the aid of a telescope, Uranus was discovered in 1781 by astronomer William Herschel, although he originally thought it was either a comet or a star. It was two years later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode. William Herschel tried unsuccessfully to name his discovery Georgium Sidus after King George III. Instead the planet was named for Uranus, the Greek god of the sky, as suggested by Johann Bode.",
+      "isGasPlanet":true,
+      "numberOfMoons":"27",
+      "nameOfLargestMoon": "Titania"
+    },
+    {
+      "name": "Neptune",
+      "imageUrl":"/pictures/neptune.jpg",
+      "description":"Dark, cold and whipped by supersonic winds, ice giant Neptune is the eighth and most distant planet in our solar system. More than 30 times as far from the Sun as Earth, Neptune is the only planet in our solar system not visible to the naked eye. In 2011 Neptune completed its first 165-year orbit since its discovery in 1846. Neptune is so far from the Sun that high noon on the big blue planet would seem like dim twilight to us. The warm light we see here on our home planet is roughly 900 times as bright as sunlight on Neptune. The ice giant Neptune was the first planet located through mathematical calculations. Using predictions made by Urbain Le Verrier, Johann Galle discovered the planet in 1846. The planet is named after the Roman god of the sea, as suggested by Le Verrier​",
+      "isGasPlanet":true,
+      "numberOfMoons":"14",
+      "nameOfLargestMoon": "Triton"
+    },
+    {
+      "name": "Saturn",
+      "imageUrl":"/pictures/saturn.jpg",
+      "description":"Saturn is the sixth planet from the Sun and the second largest planet in our solar system. Adorned with thousands of beautiful ringlets, Saturn is unique among the planets. It is not the only planet to have rings—made of chunks of ice and rock—but none are as spectacular or as complicated as Saturn's. Like fellow gas giant Jupiter, Saturn is a massive ball made mostly of hydrogen and helium. Surrounded by 53 confirmed and nine provisional moons, Saturn is home to some of the most fascinating landscapes in our solar system. From the jets of Enceladus to the methane lakes on smoggy Titan, the Saturn system is a rich source of scientific discovery and still holds many mysteries. The farthest planet from Earth discovered by the unaided human eye, Saturn has been known since ancient times and is named for the Roman god of agriculture and wealth. The Greek equivalent was Cronos, the father of Zeus/Jupiter.",
+      "isGasPlanet":true,
+      "numberOfMoons":"62",
+      "nameOfLargestMoon": "Titan"
+    }
   ]
 }
