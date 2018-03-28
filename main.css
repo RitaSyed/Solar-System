@@ -1,3 +1,19 @@
-body {
-  background-color: yellow;
+
+
+#planets-holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 1%;
+    padding: 2%;
+    width: 400px;
+    border: 2px solid slategray;
+    text-align: center;
+}
+
+.card-button {
+    margin: 0 auto;
 }

@@ -1,0 +1,12 @@
+{
+  planets: [
+    {
+      "name":,
+      "imageUrl":,
+      "description":,
+      "isGasPlanet":,
+      "numberOfMoons":,
+      "nameOfLargestMoon":
+    },
+  ]
+}
