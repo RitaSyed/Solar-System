@@ -18,15 +18,13 @@ const buildDomString = (planets) => {
 const addEventListenersHeading = () => {
   const planetCardHeading = document.getElementsByClassName("heading");
   for(let i=0; i<planetCardHeading.length; i++){
-    planetCardHeading[i].addEventListener('mouseover', cardEvents);
+    planetCardHeading[i].addEventListener('mouseover', cardEvents1);
   }
 };
 
-const cardEvents = (e) => {
+const cardEvents1 = (e) => {
   headingDissapear(e);
   displayImage(e);
-  
-  // cardClicked();
 };
 
 const headingDissapear = (e) => {
