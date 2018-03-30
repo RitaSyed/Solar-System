@@ -12,7 +12,6 @@ const buildDomString = (planets) => {
     domString +=    `<img class="image-hidden" src="${planet.imageUrl}">`;
     domString += `</div>`;
   })
-  // console.log(domString);
   printToDom(domString, "planets-holder");
 };
 
@@ -26,11 +25,11 @@ const addEventListenersHeading = () => {
 const cardEvents = (e) => {
   headingDissapear(e);
   displayImage(e);
+  
   // cardClicked();
 };
 
 const headingDissapear = (e) => {
-  const card = e.target.parentNode;
   e.target.style.display = "none";
 }
 
@@ -38,14 +37,29 @@ const displayImage = (e) => {
   const img = e.target.parentNode.querySelector('.image-hidden');
   img.classList.remove("image-hidden");
   img.classList.add("displayImg");
+  hideImage();
   }
 
-// const cardClicked = () => {
-//   const cardsImg = document.getElementsByTagName("img");
-//   for(let i=0; i<cardsImg.length; i++){
-//   cardsImg[i].addEventListener('click', cardClickedAction);
-//   }
-// };
+const hideImage = () => {
+  const cardsImg = document.getElementsByTagName('img');
+  
+  for(let i=0; i<cardsImg.length; i++){
+  cardsImg[i].addEventListener('mouseleave', (e) =>{
+    cardsImg[i].classList.remove("displayImg");
+    cardsImg[i].classList.add("image-hidden");
+    console.log("leave");
+    // console.log(e.target);
+    const cardsHeading = e.target.parentNode.querySelector('.heading');
+    // cardsHeading.classList.contains("display").remove("display");
+    cardsHeading.removeAttribute("style");
+    // console.log(cardsHeading);
+  });
+  }
+};
+
+const displayHeading = () => {
+  const cardsHeading = document.getElementsByClassName('heading');
+}
 
 
 
