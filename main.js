@@ -52,25 +52,44 @@ const displayImage = (e) => {
 const displayClickedCard = (planets) => {
   // console.log(planets);
   let domString = "";
+  // const exitCard = document.getElementsByClassName("exit");
   const cardsImg = document.getElementsByTagName("img");
   for(let i=0; i<cardsImg.length; i++){
     cardsImg[i].addEventListener("click", () => {
     console.log("clicked");
-    // for(let m=0; m<planets[i].length; m++){
-      domString += `<div class="eachCard">`;
-      domString +=    `<div class="exit">X</div>`;
-      domString +=    `<h1 class="heading">${planets[i].name}</h1>`;
-      domString +=    `<img class="img" src="${planets[i].imageUrl}">`;
-      domString +=     `<p class="desc">${planets[i].description}</p>`;
-      domString += `</div>`;
-      // console.log(planets[i]);
-      // console.log(domString);
-      printToDom(domString, "planets-holder");
+
+    domString += `<div class="eachCard">`;
+    domString +=    `<div class="exit">X</div>`;
+    domString +=    `<h1 class="heading">${planets[i].name}</h1>`;
+    domString +=    `<img class="img" src="${planets[i].imageUrl}">`;
+    domString +=     `<p class="desc">${planets[i].description}</p>`;
+    domString += `</div>`;
+    // console.log(planets[i]);
+    // console.log(domString);
+    printToDom(domString, "planets-holder");  
+    exitClikedCard();
   });
-
   }
+// exitClikedCard();
+// console.log(exitCard);
+}
 
+const cardClickedAction = () => {
+  console.log("exit");
+}
+
+const exitClikedCard = () => {
+  const exitCard = document.getElementsByClassName("exit");
+  for(let l=0; l<exitCard.length; l++){
+  exitCard[l].addEventListener('click', (e) =>{
+    console.log("exit");
+    // e.preventDefault();
+    startApplication();
+    // buildDomString(planets);
+  });
+  
   }
+};
 
 
 
