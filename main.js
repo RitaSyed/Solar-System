@@ -40,45 +40,49 @@ const displayImage = (e) => {
   img.classList.add("displayImg");
   }
 
-const cardClicked = () => {
-  // console.log("card clicked");
-   const card = document.getElementsByTagName("img");
- 
-  //  const card = document.getElementsByClassName("card");
-  const cardsParent = card.parentNode;
-
-  // console.log(cardsParent);
-  for(let i=0; i<card.length; i++){
-    card[i].addEventListener('click', displayClickedCard);
-    console.log(card[i]);
-    
-  }
-};
-
-
-const displayClickedCard = (e) => {
-  //  const planetCardHeading = document.getElementsByClassName("heading");
-//  e.target.remove();
-  console.log("card clicked");
-
-}
-
- 
-// const info = (info) => {
-//   for(let i=0; i<info.length; i++){
-//   return info[i];
+// const cardClicked = () => {
+//   const cardsImg = document.getElementsByTagName("img");
+//   for(let i=0; i<cardsImg.length; i++){
+//   cardsImg[i].addEventListener('click', cardClickedAction);
 //   }
-// }
+// };
+
+
+
+const displayClickedCard = (planets) => {
+  // console.log(planets);
+  let domString = "";
+  const cardsImg = document.getElementsByTagName("img");
+  for(let i=0; i<cardsImg.length; i++){
+    cardsImg[i].addEventListener("click", () => {
+    console.log("clicked");
+    // for(let m=0; m<planets[i].length; m++){
+      domString += `<div class="eachCard">`;
+      domString +=    `<div class="exit">X</div>`;
+      domString +=    `<h1 class="heading">${planets[i].name}</h1>`;
+      domString +=    `<img class="img" src="${planets[i].imageUrl}">`;
+      domString +=     `<p class="desc">${planets[i].description}</p>`;
+      domString += `</div>`;
+      // console.log(planets[i]);
+      // console.log(domString);
+      printToDom(domString, "planets-holder");
+  });
+
+  }
+
+  }
+
+
 
 
 function executeThisCodeAfterFileLoaded () {
   const data = JSON.parse(this.responseText);
   buildDomString(data.planets);
   addEventListenersHeading();
-  cardClicked ();
+  // cardClickedAction (data.planets);
   // console.log(data);
   // console.log();
-  // info (data.planets);
+  displayClickedCard (data.planets);
 }
 
 
