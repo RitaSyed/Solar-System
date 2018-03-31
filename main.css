@@ -11,8 +11,7 @@
     justify-content: center;
 }
 
-.card,
-.eachCard {
+.card {
     margin: 1%;
     /* padding: 2%; */
     width: 400px;
@@ -35,4 +34,13 @@
 .displayImg {
   width: 100%;
   height: 100%;
+}
+
+.eachCard {
+    margin: 1%;
+    /* padding: 2%; */
+    width: 70%;
+    height: 80%;
+    border: 2px solid slategray;
+    text-align: center;
 }
