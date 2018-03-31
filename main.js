@@ -35,29 +35,36 @@ const displayImage = (e) => {
   const img = e.target.parentNode.querySelector('.image-hidden');
   img.classList.remove("image-hidden");
   img.classList.add("displayImg");
-  hideImage();
+  addEventListenerImg();
   }
 
-const hideImage = () => {
+const addEventListenerImg = () => {
   const cardsImg = document.getElementsByTagName('img');
-  
+  for(let i=0; i<cardsImg.length; i++){
+    cardsImg[i].addEventListener('mouseleave', cardEvents2);
+  }
+}
+
+  const cardEvents2 = (e) => {
+  headingAppear(e);
+  imageHide(e);
+};
+
+const headingAppear = (e) => {
+  const cardsHeading = e.target.parentNode.querySelector('.heading');;
+  cardsHeading.style.display = "block";
+}
+
+const imageHide = (e) => {
+  const cardsImg = document.getElementsByTagName('img');
   for(let i=0; i<cardsImg.length; i++){
   cardsImg[i].addEventListener('mouseleave', (e) =>{
     cardsImg[i].classList.remove("displayImg");
     cardsImg[i].classList.add("image-hidden");
-    console.log("leave");
-    // console.log(e.target);
-    const cardsHeading = e.target.parentNode.querySelector('.heading');
-    // cardsHeading.classList.contains("display").remove("display");
-    cardsHeading.removeAttribute("style");
-    // console.log(cardsHeading);
   });
   }
 };
 
-const displayHeading = () => {
-  const cardsHeading = document.getElementsByClassName('heading');
-}
 
 
 
@@ -68,26 +75,16 @@ const displayClickedCard = (planets) => {
   const cardsImg = document.getElementsByTagName("img");
   for(let i=0; i<cardsImg.length; i++){
     cardsImg[i].addEventListener("click", () => {
-    console.log("clicked");
-
     domString += `<div class="eachCard">`;
     domString +=    `<div class="exit">X</div>`;
     domString +=    `<h1 class="heading">${planets[i].name}</h1>`;
     domString +=    `<img class="img" src="${planets[i].imageUrl}">`;
     domString +=     `<p class="desc">${planets[i].description}</p>`;
     domString += `</div>`;
-    // console.log(planets[i]);
-    // console.log(domString);
     printToDom(domString, "planets-holder");  
     exitClikedCard();
   });
   }
-// exitClikedCard();
-// console.log(exitCard);
-}
-
-const cardClickedAction = () => {
-  console.log("exit");
 }
 
 const exitClikedCard = () => {
@@ -99,10 +96,38 @@ const exitClikedCard = () => {
     startApplication();
     // buildDomString(planets);
   });
-  
   }
 };
 
+const search = (planets) => {
+  let searchBoxElement= document.getElementById ("search");
+
+  searchBoxElement.addEventListener('change', (e)=>{
+    let searchBoxValue = e.target.value.toLowerCase();
+    let searchBoxSplitedWords = searchBoxValue.split(" ");
+    let inputArray =[];
+    // console.log(searchBoxValue);
+    for(let i=0; i<planets.length; i++){
+      // console.log(planets[i].name);
+      for(let j=0; j<searchBoxSplitedWords.length; j++){
+      // console.log(searchBoxSplitedWords[j]);
+      if(planets[i].name.toLowerCase().includes(searchBoxSplitedWords[j]) && !inputArray.includes(i)){
+         console.log("matched");
+         inputArray.push(planets[i]);
+        //  console.log(inputArray);
+      }
+    }
+   
+    // console.log(planetName);
+    // console.log(planets[k].name);
+  }
+  buildDomString(inputArray);
+ console.log(inputArray);
+  });
+  // let searchValue = searchBox.value;
+  // console.log(searchBox);
+ 
+}
 
 
 
@@ -110,7 +135,7 @@ function executeThisCodeAfterFileLoaded () {
   const data = JSON.parse(this.responseText);
   buildDomString(data.planets);
   addEventListenersHeading();
-  // cardClickedAction (data.planets);
+  search (data.planets);
   // console.log(data);
   // console.log();
   displayClickedCard (data.planets);
