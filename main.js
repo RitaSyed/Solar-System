@@ -4,156 +4,127 @@ const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
 };
 
+// builds planets string to the dom page
 const buildDomString = (planets) => {
   let domString = "";
   planets.forEach((planet) => {
     domString += `<div class="card">`;
     domString +=    `<h1 class="heading">${planet.name}</h1>`;
-    domString +=    `<img class="image-hidden" src="${planet.imageUrl}">`;
+    domString +=    `<img class="hidden" src="${planet.imageUrl}">`;
     domString += `</div>`;
   })
   printToDom(domString, "planets-holder");
 };
 
-const addEventListenersHeading = () => {
-  const planetCardHeading = document.getElementsByClassName("heading");
-  for(let i=0; i<planetCardHeading.length; i++){
-    planetCardHeading[i].addEventListener('mouseover', cardEvents1);
+// adds listeners to each planet card to display and hide img
+const addEventListenersCards = () => {
+  const card = document.getElementsByClassName("card");
+  for(let i=0; i<card.length; i++){
+    card[i].addEventListener('mouseenter', displayImage);
+    card[i].addEventListener('mouseleave', imageHide);
+    card[i].addEventListener('click', executeOnClick);
   }
 };
 
-const cardEvents1 = (e) => {
-  headingDissapear(e);
-  displayImage(e);
-};
-
-const headingDissapear = (e) => {
-  e.target.style.display = "none";
-}
-
+// shows planet's image
 const displayImage = (e) => {
-  const img = e.target.parentNode.querySelector('.image-hidden');
-  img.classList.remove("image-hidden");
-  img.classList.add("displayImg");
-  addEventListenerImg();
+  const img = e.target.childNodes[1];
+  const heading = e.target.childNodes[0];
+  heading.classList.add("hidden");
+  img.classList.remove("hidden");
+  img.classList.add("img");
   }
 
-const addEventListenerImg = () => {
-  const cardsImg = document.getElementsByTagName('img');
-  for(let i=0; i<cardsImg.length; i++){
-    cardsImg[i].addEventListener('mouseleave', cardEvents2);
-  }
-}
-
-  const cardEvents2 = (e) => {
-  headingAppear(e);
-  imageHide(e);
-};
-
-const headingAppear = (e) => {
-  const cardsHeading = e.target.parentNode.querySelector('.heading');;
-  cardsHeading.style.display = "block";
-}
-
+// hides planet's image
 const imageHide = (e) => {
-  const cardsImg = document.getElementsByTagName('img');
-  for(let i=0; i<cardsImg.length; i++){
-  cardsImg[i].addEventListener('mouseleave', (e) =>{
-    cardsImg[i].classList.remove("displayImg");
-    cardsImg[i].classList.add("image-hidden");
-  });
-  }
+  const img = e.target.childNodes[1];
+  const heading = e.target.childNodes[0];
+  heading.classList.remove("hidden");
+  img.classList.add("hidden");
 };
 
-
-
-
-const displayClickedCard = (planets) => {
-  // console.log(planets);
-  let domString = "";
-  // const exitCard = document.getElementsByClassName("exit");
-  const cardsImg = document.getElementsByTagName("img");
-  for(let i=0; i<cardsImg.length; i++){
-    cardsImg[i].addEventListener("click", () => {
-    domString += `<div class="eachCard">`;
-    domString +=    `<div class="exit">X</div>`;
-    domString +=    `<h1 class="heading">${planets[i].name}</h1>`;
-    domString +=    `<img class="img" src="${planets[i].imageUrl}">`;
-    domString +=     `<p class="desc">${planets[i].description}</p>`;
-    domString += `</div>`;
-    printToDom(domString, "planets-holder");  
-    exitClikedCard();
-  });
-  }
+// prints out domString for the planet that was clicked
+const displayClickedCard = (e, planets) => {
+  let string = "";
+   planets.forEach((planet) => {
+     if (e.target.parentNode.textContent==planet.name){
+      console.log(planet.description);
+      string += `<div class="cardOnePlanet">`;
+      string +=    `<div class="exit">X</div>`;
+      string +=    `<h1 class="heading">${planet.name}</h1>`;
+      string +=    `<img src="${planet.imageUrl}">`;
+      string +=     `<p>${planet.description}</p>`;
+      string += `</div>`;
+     }
+  })
+  printToDom(string, "planets-holder");  
+  exitClikedCard();
 }
 
+// when X is clicked, the planet exits and all the planets appear on the page
 const exitClikedCard = () => {
   const exitCard = document.getElementsByClassName("exit");
   for(let l=0; l<exitCard.length; l++){
   exitCard[l].addEventListener('click', (e) =>{
     console.log("exit");
-    // e.preventDefault();
     startApplication();
-    // buildDomString(planets);
   });
   }
 };
 
+// searches through planets' info
 const search = (planets) => {
-  let searchBoxElement= document.getElementById ("search");
-
-  searchBoxElement.addEventListener('change', (e)=>{
+  let searchBoxElement= document.getElementById ("search-box");
+  searchBoxElement.addEventListener('input', (e)=>{
     let searchBoxValue = e.target.value.toLowerCase();
     let searchBoxSplitedWords = searchBoxValue.split(" ");
     let inputArray =[];
-    // console.log(searchBoxValue);
     for(let i=0; i<planets.length; i++){
-      // console.log(planets[i].name);
       for(let j=0; j<searchBoxSplitedWords.length; j++){
-      // console.log(searchBoxSplitedWords[j]);
       if(planets[i].name.toLowerCase().includes(searchBoxSplitedWords[j]) && !inputArray.includes(i)){
-         console.log("matched");
          inputArray.push(planets[i]);
-        //  console.log(inputArray);
+      }
+      else if (planets[i].description.toLowerCase().includes(searchBoxSplitedWords[j]) && !inputArray.includes(i)){
+        inputArray.push(planets[i]);
       }
     }
-   
-    // console.log(planetName);
-    // console.log(planets[k].name);
   }
   buildDomString(inputArray);
- console.log(inputArray);
   });
-  // let searchValue = searchBox.value;
-  // console.log(searchBox);
- 
 }
 
+// when planet is clicked, xhr is sent and infor in parsed for all planets
+function executeOnClick (e) {
+  hxr(function(){
+    const data2 = JSON.parse(this.responseText);
+    const planets = data2.planets;
+    displayClickedCard(e, planets);
+  }); 
+}
 
-
+// parse xhr data and passes it to other functions
 function executeThisCodeAfterFileLoaded () {
   const data = JSON.parse(this.responseText);
   buildDomString(data.planets);
-  addEventListenersHeading();
+  addEventListenersCards();
   search (data.planets);
-  // console.log(data);
-  // console.log();
-  displayClickedCard (data.planets);
 }
-
 
 function executeThisCodeIfXHRFails () {
   console.log("error");
 }
 
-// console.log
-const startApplication = () => {
+// xhr generic function
+const hxr  = (loadFunstion) => {
   let myRequest = new XMLHttpRequest();
-  myRequest.addEventListener("load", executeThisCodeAfterFileLoaded);
+  myRequest.addEventListener("load", loadFunstion);
   myRequest.addEventListener("error", executeThisCodeIfXHRFails);
   myRequest.open("GET","planets.json");
   myRequest.send();
-  // console.log(myRequest);
+}
+
+const startApplication = () => {
+  hxr (executeThisCodeAfterFileLoaded);
 };
 
 startApplication ();
